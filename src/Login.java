@@ -1,4 +1,6 @@
+import java.awt.Component;
 import java.awt.EventQueue;
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -10,8 +12,9 @@ import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
 import business.ControllerInterface;
-import business.LibrarySystemException;
 import business.SystemController;
+import util.DialogMessage;
+import javax.swing.JPasswordField;
 
 public class Login extends JFrame {
 
@@ -19,8 +22,8 @@ public class Login extends JFrame {
 
 	private JPanel contentPanel;
 	private JTextField username;
-	private JTextField password;
 	static Login frame = new Login();
+	private JPasswordField passwordField;
 
 	/**
 	 * Launch the application.
@@ -29,7 +32,7 @@ public class Login extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-
+					centerFrameOnDesktop(frame);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -38,12 +41,22 @@ public class Login extends JFrame {
 		});
 	}
 
+	public static void centerFrameOnDesktop(Component f) {
+		Toolkit toolkit = Toolkit.getDefaultToolkit();
+		int height = toolkit.getScreenSize().height;
+		int width = toolkit.getScreenSize().width;
+		int frameHeight = f.getSize().height;
+		int frameWidth = f.getSize().width;
+		f.setLocation(((width - frameWidth) / 2), (height - frameHeight) / 3);
+	}
+
 	/**
 	 * Create the frame.
 	 */
 	public Login() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
+		setSize(650, 550);
 		contentPanel = new JPanel();
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPanel);
@@ -54,7 +67,7 @@ public class Login extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 
 				String uID = username.getText().trim();
-				String pwd = password.getText().trim();
+				String pwd = passwordField.getText().trim();
 				if (uID.length() == 0 || pwd.length() == 0) {
 //					displayError("Id and Password fields must be nonempty");
 					System.out.println("Id and Password fields must be nonempty");
@@ -69,31 +82,30 @@ public class Login extends JFrame {
 					} catch (Exception ex) {
 //						displayError("Error! " + e.getMessage());
 						ex.printStackTrace();
+						DialogMessage.showDialog(new JFrame(), "Invalid credentials");
 					}
 				}
 
 			}
 		});
-		btnNewButton.setBounds(308, 144, 117, 29);
+		btnNewButton.setBounds(501, 134, 117, 29);
 		contentPanel.add(btnNewButton);
 
 		JLabel lblNewLabel = new JLabel("Username");
-		lblNewLabel.setBounds(216, 64, 80, 16);
+		lblNewLabel.setBounds(409, 64, 80, 16);
 		contentPanel.add(lblNewLabel);
 
 		username = new JTextField();
-		username.setBounds(308, 59, 130, 26);
+		username.setBounds(501, 59, 130, 26);
 		contentPanel.add(username);
 		username.setColumns(10);
 
 		JLabel lblNewLabel_1 = new JLabel("Password");
-		lblNewLabel_1.setBounds(216, 111, 80, 16);
+		lblNewLabel_1.setBounds(409, 102, 80, 16);
 		contentPanel.add(lblNewLabel_1);
 
-		password = new JTextField();
-		password.setBounds(308, 106, 130, 26);
-		contentPanel.add(password);
-		password.setColumns(10);
+		passwordField = new JPasswordField();
+		passwordField.setBounds(501, 97, 130, 26);
+		contentPanel.add(passwordField);
 	}
-
 }
