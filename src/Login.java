@@ -4,17 +4,20 @@ import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
 import business.ControllerInterface;
 import business.SystemController;
 import util.DialogMessage;
-import javax.swing.JPasswordField;
+import javax.swing.JTextArea;
+import java.awt.Font;
 
 public class Login extends JFrame {
 
@@ -32,6 +35,7 @@ public class Login extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
+					frame.setTitle("MIU LMS");
 					centerFrameOnDesktop(frame);
 					frame.setVisible(true);
 				} catch (Exception e) {
@@ -69,43 +73,58 @@ public class Login extends JFrame {
 				String uID = username.getText().trim();
 				String pwd = passwordField.getText().trim();
 				if (uID.length() == 0 || pwd.length() == 0) {
-//					displayError("Id and Password fields must be nonempty");
-					System.out.println("Id and Password fields must be nonempty");
+					DialogMessage.showDialog(frame, "Id and Password fields must be nonempty", "Warning");
 				} else {
 					try {
 						sc.login(uID, pwd);
-//						updateLeftPanel(SystemController.currentAuth);
-//						displayInfo("Login successful");
-//						librarySystem.repaint();
 						frame.dispose();
 						Main.entry();
 					} catch (Exception ex) {
-//						displayError("Error! " + e.getMessage());
 						ex.printStackTrace();
-						DialogMessage.showDialog(new JFrame(), "Invalid credentials");
+						DialogMessage.showDialog(new JFrame(), "Invalid credentials.", "Error");
 					}
 				}
 
 			}
 		});
-		btnNewButton.setBounds(501, 134, 117, 29);
+		btnNewButton.setBounds(501, 209, 117, 29);
 		contentPanel.add(btnNewButton);
 
 		JLabel lblNewLabel = new JLabel("Username");
-		lblNewLabel.setBounds(409, 64, 80, 16);
+		lblNewLabel.setBounds(409, 138, 80, 16);
 		contentPanel.add(lblNewLabel);
 
 		username = new JTextField();
-		username.setBounds(501, 59, 130, 26);
+		username.setBounds(501, 133, 130, 26);
 		contentPanel.add(username);
 		username.setColumns(10);
 
 		JLabel lblNewLabel_1 = new JLabel("Password");
-		lblNewLabel_1.setBounds(409, 102, 80, 16);
+		lblNewLabel_1.setBounds(409, 176, 80, 16);
 		contentPanel.add(lblNewLabel_1);
 
 		passwordField = new JPasswordField();
-		passwordField.setBounds(501, 97, 130, 26);
+		passwordField.setBounds(501, 171, 130, 26);
 		contentPanel.add(passwordField);
+
+		JLabel lblNewLabel_2 = new JLabel("New label");
+		lblNewLabel_2.setIcon(new ImageIcon(Login.class.getResource("/docs/images/MicrosoftTeams-image.jpeg")));
+		lblNewLabel_2.setBounds(0, -12, 377, 534);
+		contentPanel.add(lblNewLabel_2);
+
+		JLabel lblNewLabel_3 = new JLabel("  MIU");
+		lblNewLabel_3.setFont(new Font("Lucida Grande", Font.BOLD, 15));
+		lblNewLabel_3.setBounds(482, 31, 61, 16);
+		contentPanel.add(lblNewLabel_3);
+
+		JLabel lblNewLabel_4 = new JLabel("Library Management");
+		lblNewLabel_4.setFont(new Font("Lucida Grande", Font.BOLD, 15));
+		lblNewLabel_4.setBounds(423, 47, 171, 16);
+		contentPanel.add(lblNewLabel_4);
+
+		JLabel lblNewLabel_5 = new JLabel("System");
+		lblNewLabel_5.setFont(new Font("Lucida Grande", Font.BOLD, 15));
+		lblNewLabel_5.setBounds(482, 67, 61, 16);
+		contentPanel.add(lblNewLabel_5);
 	}
 }

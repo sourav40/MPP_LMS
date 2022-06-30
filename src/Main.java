@@ -6,7 +6,7 @@ import javax.swing.*;
 public class Main {
 	public static void entry() {
 		EventQueue.invokeLater(() -> {
-			LibrarySystem.INSTANCE.setTitle("Library Application");
+			LibrarySystem.INSTANCE.setTitle("MIU LMS");
 			LibrarySystem.INSTANCE.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 			LibrarySystem.INSTANCE.init();
