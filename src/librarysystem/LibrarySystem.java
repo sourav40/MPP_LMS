@@ -23,7 +23,7 @@ public class LibrarySystem extends JFrame implements LibWindow {
 
 	JPanel cards;
 	JList<ListItem> linkList;
-//	public static JTextArea statusBar = new JTextArea("Welcome to the Library System!");
+	public static JTextArea statusBar = new JTextArea("Welcome to the Library System!");
 	public final static LibrarySystem INSTANCE = new LibrarySystem();
 
 	LoginPanel lp;
@@ -70,7 +70,7 @@ public class LibrarySystem extends JFrame implements LibWindow {
 
 	@Override
 	public void init() {
-//		Util.adjustLabelFont(statusBar, Util.DARK_BLUE, true);
+		Util.adjustLabelFont(statusBar, Util.DARK_BLUE, true);
 		setSize(800, 600);
 		setResizable(false);
 		createLinkLabels();
@@ -82,7 +82,7 @@ public class LibrarySystem extends JFrame implements LibWindow {
 			System.out.println(value + " " + allowed);
 
 			// cl = (CardLayout)(cards.getLayout());
-//			statusBar.setText("");
+			statusBar.setText("");
 			if (!allowed) {
 				value = splashScreenItem.getItemName();
 				linkList.setSelectedIndex(0);
@@ -95,15 +95,16 @@ public class LibrarySystem extends JFrame implements LibWindow {
 		// set up split panes
 		JSplitPane innerPane = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, linkList, cards);
 		innerPane.setDividerLocation(180);
-		JSplitPane outerPane = new JSplitPane(JSplitPane.VERTICAL_SPLIT, innerPane, null);
-		outerPane.setDividerLocation(450);
+		JSplitPane outerPane = new JSplitPane(JSplitPane.VERTICAL_SPLIT, innerPane, statusBar);
+		outerPane.setDividerLocation(600);
+		outerPane.setEnabled(false);
 		add(outerPane, BorderLayout.CENTER);
 		lp.setLibrarySystem(this);
 	}
 
-//	public JTextArea getStatusBar() {
-//		return statusBar;
-//	}
+	public JTextArea getStatusBar() {
+		return statusBar;
+	}
 
 	public void createLinkLabels() {
 

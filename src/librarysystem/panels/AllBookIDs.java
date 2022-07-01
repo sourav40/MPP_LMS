@@ -16,7 +16,7 @@ import business.SystemController;
 import librarysystem.LibrarySystem;
 import util.DialogMessage;
 
-public class AllBookIDs {
+public class AllBookIDs implements MessageableWindow {
 	public JPanel getMainPanel() {
 		return mainPanel;
 	}

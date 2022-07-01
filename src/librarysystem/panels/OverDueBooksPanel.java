@@ -11,7 +11,7 @@ import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.util.List;
 
-public class OverDueBooksPanel {
+public class OverDueBooksPanel implements MessageableWindow{
 	ControllerInterface sc = SystemController.INSTANCE;
 
 	private JTable table;
@@ -116,6 +116,12 @@ public class OverDueBooksPanel {
 				}
 			}
 		});
+	}
+
+	@Override
+	public void updateData() {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

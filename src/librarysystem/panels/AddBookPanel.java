@@ -20,7 +20,7 @@ import business.SystemController;
 import librarysystem.LibrarySystem;
 import util.DialogMessage;
 
-public class AddBookPanel {
+public class AddBookPanel implements MessageableWindow {
 	public JPanel getMainPanel() {
 		clearData();
 		return mainPanel;
@@ -193,10 +193,10 @@ public class AddBookPanel {
 			String maxCheckoutLen = maxCheckoutLength.getText().trim();
 			if (lName.length() == 0 || fName.length() == 0 || phoneNumber.length() == 0 || bkISBN.length() == 0
 					|| maxCheckoutLen.length() == 0) {
-//				displayError("All fields should be non-empty");
+				displayError("All fields should be non-empty");
 				DialogMessage.showDialog(LibrarySystem.INSTANCE, "All fields should be non-empty", DialogMessage.ERROR);
 			} else if (!Util.isNumeric(maxCheckoutLen)) {
-//				displayError("Error: Max Checkout Length should be a number");
+				displayError("Error: Max Checkout Length should be a number");
 				DialogMessage.showDialog(LibrarySystem.INSTANCE, "Error: Max Checkout Length should be a number",
 						DialogMessage.ERROR);
 			} else {
@@ -204,16 +204,22 @@ public class AddBookPanel {
 				Author author = new Author(fName, lName, phoneNumber, address, "A happy man is he.");
 				try {
 					sc.addBook(bkISBN, title, Integer.parseInt(maxCheckoutLen), List.of(author));
-//					displayInfo("The book " + title + " has been added to the collection!");
+					displayInfo("The book " + title + " has been added to the collection!");
 					DialogMessage.showDialog(LibrarySystem.INSTANCE,
 							"The book " + title + " has been added to the collection!", DialogMessage.INFO);
 
 				} catch (LibrarySystemException e) {
-//					displayError("Error: " + e.getMessage());
+					displayError("Error: " + e.getMessage());
 					DialogMessage.showDialog(LibrarySystem.INSTANCE, "Error: " + e.getMessage(), DialogMessage.ERROR);
 				}
 			}
 		});
+	}
+
+	@Override
+	public void updateData() {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

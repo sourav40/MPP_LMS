@@ -17,7 +17,7 @@ import business.SystemController;
 import librarysystem.LibrarySystem;
 import util.DialogMessage;
 
-public class CheckoutBookPanel {
+public class CheckoutBookPanel implements MessageableWindow {
 	ControllerInterface sc = SystemController.INSTANCE;
 
 	private final JPanel mainPanel;
@@ -42,7 +42,7 @@ public class CheckoutBookPanel {
 		defineMiddlePanel();
 		defineLowerPanel();
 		BorderLayout bl = new BorderLayout();
-		bl.setVgap(30);
+//		bl.setVgap(30);
 		mainPanel.setLayout(bl);
 
 		mainPanel.add(topPanel, BorderLayout.NORTH);
@@ -60,45 +60,38 @@ public class CheckoutBookPanel {
 
 	private void defineMiddlePanel() {
 		middlePanel = new JPanel();
-		BorderLayout bl = new BorderLayout();
-		bl.setVgap(30);
-		middlePanel.setLayout(bl);
-
-		innerPanel = new JPanel();
-		FlowLayout fl = new FlowLayout(FlowLayout.CENTER, 25, 25);
-		innerPanel.setLayout(fl);
-
-		JPanel leftPanel = new JPanel();
-		JPanel rightPanel = new JPanel();
-		leftPanel.setLayout(new BoxLayout(leftPanel, BoxLayout.Y_AXIS));
-		rightPanel.setLayout(new BoxLayout(rightPanel, BoxLayout.Y_AXIS));
+		middlePanel.setLayout(null);
 
 		JLabel memberIdLabel = new JLabel("Member ID");
+		memberIdLabel.setBounds(30, 90, 200, 10);
+
 		JLabel isbnLabel = new JLabel("ISBN");
+		isbnLabel.setBounds(30, 150, 200, 10);
 
-		memberIdField = new JTextField(10);
-		isbnField = new JTextField(10);
+		memberIdField = new JTextField();
+		isbnField = new JTextField();
+		memberIdField.setBounds(250, 70, 250, 50);
+		isbnField.setBounds(250, 130, 250, 50);
 
-		leftPanel.add(memberIdLabel);
-		leftPanel.add(Box.createRigidArea(new Dimension(0, 12)));
-		leftPanel.add(isbnLabel);
+		middlePanel.add(memberIdLabel);
+		middlePanel.add(memberIdField);
 
-		rightPanel.add(memberIdField);
-		rightPanel.add(Box.createRigidArea(new Dimension(0, 8)));
-		rightPanel.add(isbnField);
+		middlePanel.add(isbnLabel);
+		middlePanel.add(isbnField);
+		checkoutButton = new JButton("Checkout");
+		checkoutButton.setBounds(245, 200, 150, 25);
+		addCheckoutButtonListener(checkoutButton);
+		middlePanel.add(checkoutButton);
 
-		innerPanel.add(leftPanel);
-		innerPanel.add(rightPanel);
-		middlePanel.add(innerPanel, BorderLayout.NORTH);
 	}
 
 	private void defineLowerPanel() {
 		lowerPanel = new JPanel();
 		FlowLayout fl = new FlowLayout(FlowLayout.CENTER);
 		lowerPanel.setLayout(fl);
-		checkoutButton = new JButton("Checkout");
-		addCheckoutButtonListener(checkoutButton);
-		lowerPanel.add(checkoutButton);
+//		checkoutButton = new JButton("Checkout");
+//		addCheckoutButtonListener(checkoutButton);
+//		lowerPanel.add(checkoutButton);
 	}
 
 	private void addCheckoutButtonListener(JButton checkoutBtn) {
@@ -118,6 +111,12 @@ public class CheckoutBookPanel {
 				}
 			}
 		});
+	}
+
+	@Override
+	public void updateData() {
+		// TODO Auto-generated method stub
+
 	}
 
 }
