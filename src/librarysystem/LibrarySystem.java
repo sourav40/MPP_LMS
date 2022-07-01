@@ -31,7 +31,7 @@ public class LibrarySystem extends JFrame implements LibWindow, MessageableWindo
 	LandingPanel landingPanel;
 
 	// list items
-	ListItem splashScreenItem = new ListItem("Splash", true);
+	ListItem splashScreenItem = new ListItem("Dashboard", true);
 //	ListItem loginListItem = new ListItem("Login/Logout", true);
 	ListItem addBookItem = new ListItem("Add Book", false);
 	ListItem addMember = new ListItem("Add Member", false);
@@ -110,6 +110,7 @@ public class LibrarySystem extends JFrame implements LibWindow, MessageableWindo
 
 		if (SystemController.currentAuth == Auth.BOTH) {
 
+			model.addElement(splashScreenItem);
 			model.addElement(viewTitlesItem);
 			model.addElement(addBookItem);
 			model.addElement(addMember);
@@ -122,6 +123,7 @@ public class LibrarySystem extends JFrame implements LibWindow, MessageableWindo
 
 		if (SystemController.currentAuth == Auth.ADMIN) {
 
+			model.addElement(splashScreenItem);
 			model.addElement(viewTitlesItem);
 			model.addElement(addBookItem);
 			model.addElement(addMember);
@@ -134,6 +136,7 @@ public class LibrarySystem extends JFrame implements LibWindow, MessageableWindo
 
 		if (SystemController.currentAuth == Auth.LIBRARIAN) {
 
+			model.addElement(splashScreenItem);
 			model.addElement(viewTitlesItem);
 //			model.addElement(addBookItem);
 //			model.addElement(addMember);

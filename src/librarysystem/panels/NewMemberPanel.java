@@ -72,21 +72,21 @@ public class NewMemberPanel implements MessageableWindow {
 //		rightPanel.setLayout(new BoxLayout(rightPanel, BoxLayout.Y_AXIS));
 
 		JLabel idLabel = new JLabel("ID");
-		idLabel.setBorder(BorderFactory.createEmptyBorder(0, 100, 0, 0));
+		idLabel.setBorder(BorderFactory.createEmptyBorder(0, 30, 0, 0));
 		JLabel firstNameLabel = new JLabel("First Name");
-		firstNameLabel.setBorder(BorderFactory.createEmptyBorder(0, 100, 0, 0));
+		firstNameLabel.setBorder(BorderFactory.createEmptyBorder(0, 30, 0, 0));
 		JLabel lastNameLabel = new JLabel("Last Name");
-		lastNameLabel.setBorder(BorderFactory.createEmptyBorder(0, 100, 0, 0));
+		lastNameLabel.setBorder(BorderFactory.createEmptyBorder(0, 30, 0, 0));
 		JLabel streetLabel = new JLabel("Street");
-		streetLabel.setBorder(BorderFactory.createEmptyBorder(0, 100, 0, 0));
+		streetLabel.setBorder(BorderFactory.createEmptyBorder(0, 30, 0, 0));
 		JLabel cityLabel = new JLabel("City");
-		cityLabel.setBorder(BorderFactory.createEmptyBorder(0, 100, 0, 0));
+		cityLabel.setBorder(BorderFactory.createEmptyBorder(0, 30, 0, 0));
 		JLabel stateLabel = new JLabel("State");
-		stateLabel.setBorder(BorderFactory.createEmptyBorder(0, 100, 0, 0));
+		stateLabel.setBorder(BorderFactory.createEmptyBorder(0, 30, 0, 0));
 		JLabel zipLabel = new JLabel("Zip");
-		zipLabel.setBorder(BorderFactory.createEmptyBorder(0, 100, 0, 0));
+		zipLabel.setBorder(BorderFactory.createEmptyBorder(0, 30, 0, 0));
 		JLabel cellLabel = new JLabel("Mobile Number");
-		cellLabel.setBorder(BorderFactory.createEmptyBorder(0, 100, 0, 0));
+		cellLabel.setBorder(BorderFactory.createEmptyBorder(0, 30, 0, 0));
 
 		idField = new JTextField(10);
 		firstNameField = new JTextField(10);
