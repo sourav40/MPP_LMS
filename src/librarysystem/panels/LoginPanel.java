@@ -201,8 +201,8 @@ public class LoginPanel implements MessageableWindow {
 			adminItems();
 		else if (auth == Auth.LIBRARIAN)
 			librarianItems();
-		else
-			logoutItems();
+//		else
+//			logoutItems();
 	}
 
 	private void adminItems() {
@@ -213,10 +213,6 @@ public class LoginPanel implements MessageableWindow {
 	private void librarianItems() {
 		ListItem[] librarianItems = librarySystem.getLibrarianItems();
 		updateList(librarianItems);
-	}
-
-	private void logoutItems() {
-		updateList(librarySystem.getLoginItems());
 	}
 
 	private void bothItems() {

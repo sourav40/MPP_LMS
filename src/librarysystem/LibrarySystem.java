@@ -15,6 +15,9 @@ import javax.swing.JPanel;
 import javax.swing.JSplitPane;
 import javax.swing.JTextArea;
 
+import business.SystemController;
+import dataaccess.Auth;
+
 @SuppressWarnings("serial")
 public class LibrarySystem extends JFrame implements LibWindow, MessageableWindow {
 
@@ -29,7 +32,7 @@ public class LibrarySystem extends JFrame implements LibWindow, MessageableWindo
 
 	// list items
 	ListItem splashScreenItem = new ListItem("Splash", true);
-	ListItem loginListItem = new ListItem("Login/Logout", true);
+//	ListItem loginListItem = new ListItem("Login/Logout", true);
 	ListItem addBookItem = new ListItem("Add Book", false);
 	ListItem addMember = new ListItem("Add Member", false);
 	ListItem viewTitlesItem = new ListItem("All Book IDs", false);
@@ -40,11 +43,10 @@ public class LibrarySystem extends JFrame implements LibWindow, MessageableWindo
 
 	ListItem addBookCopyItem = new ListItem("Add Book Copy", false);
 
-	ListItem[] loginItems = { loginListItem };
-	ListItem[] librarianItems = { checkoutBook, loginListItem, viewTitlesItem, checkMemberRecord, };
-	ListItem[] adminItems = { addMember, addBookItem, loginListItem, viewTitlesItem, addBookCopyItem, };
-	ListItem[] allItems = { addMember, addBookItem, checkoutBook, loginListItem, viewTitlesItem, addBookCopyItem,
-			checkMemberRecord, };
+//	ListItem[] loginItems = { loginListItem };
+	ListItem[] librarianItems = { checkoutBook, viewTitlesItem, checkMemberRecord, };
+	ListItem[] adminItems = { addMember, addBookItem, viewTitlesItem, addBookCopyItem, };
+	ListItem[] allItems = { addMember, addBookItem, checkoutBook, viewTitlesItem, addBookCopyItem, checkMemberRecord, };
 
 	public ListItem[] getAdminItems() {
 		return adminItems;
@@ -56,10 +58,6 @@ public class LibrarySystem extends JFrame implements LibWindow, MessageableWindo
 
 	public ListItem[] getLibrarianItems() {
 		return librarianItems;
-	}
-
-	public ListItem[] getLoginItems() {
-		return loginItems;
 	}
 
 	public JList<ListItem> getLinkList() {
@@ -107,15 +105,44 @@ public class LibrarySystem extends JFrame implements LibWindow, MessageableWindo
 	}
 
 	public void createLinkLabels() {
+
 		DefaultListModel<ListItem> model = new DefaultListModel<>();
-		model.addElement(loginListItem);
-		model.addElement(viewTitlesItem);
-		model.addElement(addBookItem);
-		model.addElement(addMember);
-		model.addElement(checkoutBook);
-		model.addElement(addBookCopyItem);
-		model.addElement(checkMemberRecord);
-		model.addElement(dueBook);
+
+		if (SystemController.currentAuth == Auth.BOTH) {
+
+			model.addElement(viewTitlesItem);
+			model.addElement(addBookItem);
+			model.addElement(addMember);
+			model.addElement(checkoutBook);
+			model.addElement(addBookCopyItem);
+			model.addElement(checkMemberRecord);
+//			model.addElement(dueBook);
+
+		}
+
+		if (SystemController.currentAuth == Auth.ADMIN) {
+
+			model.addElement(viewTitlesItem);
+			model.addElement(addBookItem);
+			model.addElement(addMember);
+//			model.addElement(checkoutBook);
+			model.addElement(addBookCopyItem);
+//			model.addElement(checkMemberRecord);
+//			model.addElement(dueBook);
+
+		}
+
+		if (SystemController.currentAuth == Auth.LIBRARIAN) {
+
+			model.addElement(viewTitlesItem);
+//			model.addElement(addBookItem);
+//			model.addElement(addMember);
+			model.addElement(checkoutBook);
+//			model.addElement(addBookCopyItem);
+			model.addElement(checkMemberRecord);
+//			model.addElement(dueBook);
+
+		}
 		linkList = new JList<>(model);
 		linkList.setCellRenderer(new DefaultListCellRenderer() {
 
@@ -183,7 +210,6 @@ public class LibrarySystem extends JFrame implements LibWindow, MessageableWindo
 
 		cards = new JPanel(new CardLayout());
 		cards.add(splashScreen, splashScreenItem.getItemName());
-		cards.add(loginPanel, loginListItem.getItemName());
 		cards.add(newMember, addMember.getItemName());
 		cards.add(allTitlesPanel, viewTitlesItem.getItemName());
 		cards.add(addBookPanel, addBookItem.getItemName());
