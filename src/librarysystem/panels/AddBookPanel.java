@@ -1,7 +1,5 @@
 package librarysystem.panels;
 
-import business.*;
-
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
@@ -9,14 +7,20 @@ import java.awt.GridLayout;
 import java.util.List;
 
 import javax.swing.BorderFactory;
-import javax.swing.Box;
-import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-public class AddBookPanel implements MessageableWindow {
+import business.Address;
+import business.Author;
+import business.ControllerInterface;
+import business.LibrarySystemException;
+import business.SystemController;
+import librarysystem.LibrarySystem;
+import util.DialogMessage;
+
+public class AddBookPanel {
 	public JPanel getMainPanel() {
 		clearData();
 		return mainPanel;
@@ -59,13 +63,14 @@ public class AddBookPanel implements MessageableWindow {
 
 		BorderLayout bl = new BorderLayout();
 		bl.setVgap(70);
-		mainPanel.setLayout(bl);
 
+		mainPanel.setLayout(bl);
 		mainPanel.add(topPanel, BorderLayout.NORTH);
 		mainPanel.add(outerMiddle, BorderLayout.CENTER);
-		mainPanel.add(addBookButtonPanel, BorderLayout.SOUTH);
-		mainPanel.add(addResetBookButtonPanel, BorderLayout.EAST);
-
+		JPanel btnPnl = new JPanel(new FlowLayout(FlowLayout.CENTER));
+		btnPnl.add(addBookButtonPanel);
+		btnPnl.add(addResetBookButtonPanel);
+		mainPanel.add(btnPnl, BorderLayout.SOUTH);
 //		clearData();
 	}
 
@@ -188,22 +193,27 @@ public class AddBookPanel implements MessageableWindow {
 			String maxCheckoutLen = maxCheckoutLength.getText().trim();
 			if (lName.length() == 0 || fName.length() == 0 || phoneNumber.length() == 0 || bkISBN.length() == 0
 					|| maxCheckoutLen.length() == 0) {
-				displayError("All fields should be non-empty");
+//				displayError("All fields should be non-empty");
+				DialogMessage.showDialog(LibrarySystem.INSTANCE, "All fields should be non-empty", DialogMessage.ERROR);
 			} else if (!Util.isNumeric(maxCheckoutLen)) {
-				displayError("Error: Max Checkout Length should be a number");
+//				displayError("Error: Max Checkout Length should be a number");
+				DialogMessage.showDialog(LibrarySystem.INSTANCE, "Error: Max Checkout Length should be a number",
+						DialogMessage.ERROR);
 			} else {
 				Address address = new Address("101 S. Main", "Fairfield", "IA", "52556");
 				Author author = new Author(fName, lName, phoneNumber, address, "A happy man is he.");
 				try {
 					sc.addBook(bkISBN, title, Integer.parseInt(maxCheckoutLen), List.of(author));
-					displayInfo("The book " + title + " has been added to the collection!");
+//					displayInfo("The book " + title + " has been added to the collection!");
+					DialogMessage.showDialog(LibrarySystem.INSTANCE,
+							"The book " + title + " has been added to the collection!", DialogMessage.INFO);
+
 				} catch (LibrarySystemException e) {
-					displayError("Error: " + e.getMessage());
+//					displayError("Error: " + e.getMessage());
+					DialogMessage.showDialog(LibrarySystem.INSTANCE, "Error: " + e.getMessage(), DialogMessage.ERROR);
 				}
 			}
 		});
 	}
 
-	public void updateData() {
-	}
 }

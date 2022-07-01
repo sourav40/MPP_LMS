@@ -19,11 +19,11 @@ import business.SystemController;
 import dataaccess.Auth;
 
 @SuppressWarnings("serial")
-public class LibrarySystem extends JFrame implements LibWindow, MessageableWindow {
+public class LibrarySystem extends JFrame implements LibWindow {
 
 	JPanel cards;
 	JList<ListItem> linkList;
-	public static JTextArea statusBar = new JTextArea("Welcome to the Library System!");
+//	public static JTextArea statusBar = new JTextArea("Welcome to the Library System!");
 	public final static LibrarySystem INSTANCE = new LibrarySystem();
 
 	LoginPanel lp;
@@ -44,9 +44,11 @@ public class LibrarySystem extends JFrame implements LibWindow, MessageableWindo
 	ListItem addBookCopyItem = new ListItem("Add Book Copy", false);
 
 //	ListItem[] loginItems = { loginListItem };
-	ListItem[] librarianItems = { checkoutBook, viewTitlesItem, checkMemberRecord, };
-	ListItem[] adminItems = { addMember, addBookItem, viewTitlesItem, addBookCopyItem, };
-	ListItem[] allItems = { addMember, addBookItem, checkoutBook, viewTitlesItem, addBookCopyItem, checkMemberRecord, };
+	ListItem[] librarianItems = { splashScreenItem, checkoutBook, viewTitlesItem, checkMemberRecord, };
+	ListItem[] adminItems = { splashScreenItem, addMember, addBookItem, viewTitlesItem, addBookCopyItem, };
+	ListItem[] allItems = { splashScreenItem,
+			addMember, addBookItem, checkoutBook, viewTitlesItem, addBookCopyItem,
+			checkMemberRecord, };
 
 	public ListItem[] getAdminItems() {
 		return adminItems;
@@ -69,9 +71,9 @@ public class LibrarySystem extends JFrame implements LibWindow, MessageableWindo
 
 	@Override
 	public void init() {
-		Util.adjustLabelFont(statusBar, Util.DARK_BLUE, true);
-		setSize(650, 550);
-
+//		Util.adjustLabelFont(statusBar, Util.DARK_BLUE, true);
+		setSize(800, 600);
+		setResizable(false);
 		createLinkLabels();
 		createMainPanels();
 		CardLayout cl = (CardLayout) (cards.getLayout());
@@ -81,7 +83,7 @@ public class LibrarySystem extends JFrame implements LibWindow, MessageableWindo
 			System.out.println(value + " " + allowed);
 
 			// cl = (CardLayout)(cards.getLayout());
-			statusBar.setText("");
+//			statusBar.setText("");
 			if (!allowed) {
 				value = splashScreenItem.getItemName();
 				linkList.setSelectedIndex(0);
@@ -94,15 +96,15 @@ public class LibrarySystem extends JFrame implements LibWindow, MessageableWindo
 		// set up split panes
 		JSplitPane innerPane = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, linkList, cards);
 		innerPane.setDividerLocation(180);
-		JSplitPane outerPane = new JSplitPane(JSplitPane.VERTICAL_SPLIT, innerPane, statusBar);
+		JSplitPane outerPane = new JSplitPane(JSplitPane.VERTICAL_SPLIT, innerPane, null);
 		outerPane.setDividerLocation(450);
 		add(outerPane, BorderLayout.CENTER);
 		lp.setLibrarySystem(this);
 	}
 
-	public JTextArea getStatusBar() {
-		return statusBar;
-	}
+//	public JTextArea getStatusBar() {
+//		return statusBar;
+//	}
 
 	public void createLinkLabels() {
 
@@ -222,10 +224,10 @@ public class LibrarySystem extends JFrame implements LibWindow, MessageableWindo
 		cards.add(addBookCopyPanel, addBookCopyItem.getItemName());
 	}
 
-	@Override
-	public void updateData() {
-		// nothing to do
-	}
+//	@Override
+//	public void updateData() {
+//		// nothing to do
+//	}
 
 	@Override
 	public void setVisible(boolean b) {

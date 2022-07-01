@@ -8,7 +8,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.util.List;
 
-public class LandingPanel implements MessageableWindow {
+public class LandingPanel {
 	LibrarySystem librarySystem;
 
 	private final ControllerInterface sc = SystemController.INSTANCE;
@@ -68,8 +68,4 @@ public class LandingPanel implements MessageableWindow {
 		mainPanel.add(member);
 	}
 
-	@Override
-	public void updateData() {
-
-	}
 }

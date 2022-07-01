@@ -4,11 +4,13 @@ import business.Address;
 import business.ControllerInterface;
 import business.LibrarySystemException;
 import business.SystemController;
+import librarysystem.LibrarySystem;
+import util.DialogMessage;
 
 import javax.swing.*;
 import java.awt.*;
 
-public class NewMemberPanel implements MessageableWindow {
+public class NewMemberPanel {
 	ControllerInterface controllerInterface = SystemController.INSTANCE;
 
 	private JPanel mainPanel;
@@ -162,14 +164,14 @@ public class NewMemberPanel implements MessageableWindow {
 
 			try {
 				controllerInterface.addMember(id, firstName, lastName, cell, street, city, state, zip);
-				displayInfo("Successfully added new Library member!");
+//				displayInfo("Successfully added new Library member!");
+				DialogMessage.showDialog(LibrarySystem.INSTANCE, "Successfully added new Library member!",
+						DialogMessage.INFO);
 			} catch (LibrarySystemException e) {
-				displayError("Error! " + e.getMessage());
+//				displayError("Error! " + e.getMessage());
+				DialogMessage.showDialog(LibrarySystem.INSTANCE, "Error! " + e.getMessage(), DialogMessage.ERROR);
 			}
 		});
 	}
 
-	@Override
-	public void updateData() {
-	}
 }

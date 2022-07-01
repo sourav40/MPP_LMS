@@ -5,16 +5,20 @@ import javax.swing.JOptionPane;
 
 public class DialogMessage {
 
+	public static final String INFO = "INFO";
+	public static final String ERROR = "ERROR";
+	public static final String WARNING = "WARNING";
+
 	public static void showDialog(JFrame jFrame, String message, String messageType) {
 
 		switch (messageType) {
-		case "Plain":
+		case "INFOs":
 			JOptionPane.showMessageDialog(jFrame, message, "Message", JOptionPane.PLAIN_MESSAGE);
 			break;
-		case "Error":
+		case "ERROR":
 			JOptionPane.showMessageDialog(jFrame, message, "Message", JOptionPane.ERROR_MESSAGE);
 			break;
-		case "Warning":
+		case "WARNING":
 			JOptionPane.showMessageDialog(jFrame, message, "Message", JOptionPane.WARNING_MESSAGE);
 			break;
 		default:

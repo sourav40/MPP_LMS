@@ -10,7 +10,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
 
-public class LoginPanel implements MessageableWindow {
+public class LoginPanel {
 	LibrarySystem librarySystem;
 
 	private final ControllerInterface sc = SystemController.INSTANCE;
@@ -18,7 +18,7 @@ public class LoginPanel implements MessageableWindow {
 	public void setLibrarySystem(LibrarySystem librarysystem) {
 		librarySystem = librarysystem;
 		updateLeftPanel(SystemController.currentAuth);
-		displayInfo("Login successful");
+//		displayInfo("Login successful");
 		librarySystem.repaint();
 	}
 
@@ -166,15 +166,15 @@ public class LoginPanel implements MessageableWindow {
 			String uID = userId.getText().trim();
 			String pwd = password.getText().trim();
 			if (uID.length() == 0 || pwd.length() == 0) {
-				displayError("Id and Password fields must be nonempty");
+//				displayError("Id and Password fields must be nonempty");
 			} else {
 				try {
 					sc.login(uID, pwd);
 					updateLeftPanel(SystemController.currentAuth);
-					displayInfo("Login successful");
+//					displayInfo("Login successful");
 					librarySystem.repaint();
 				} catch (LibrarySystemException e) {
-					displayError("Error! " + e.getMessage());
+//					displayError("Error! " + e.getMessage());
 				}
 			}
 		});
@@ -185,7 +185,7 @@ public class LoginPanel implements MessageableWindow {
 			clearFields();
 			updateLeftPanel(null);
 			librarySystem.repaint();
-			displayInfo("Logout successful");
+//			displayInfo("Logout successful");
 		});
 	}
 
@@ -244,10 +244,6 @@ public class LoginPanel implements MessageableWindow {
 				next.setHighlight(true);
 			}
 		}
-	}
-
-	@Override
-	public void updateData() {
 	}
 
 	private static final long serialVersionUID = 3618976789175941432L;
