@@ -60,17 +60,21 @@ public class CheckoutRecordPanel implements MessageableWindow {
 
 	private void defineMiddlePanel() {
 		middlePanel = new JPanel();
-		middlePanel.setLayout(new FlowLayout(FlowLayout.CENTER));
-
+		middlePanel.setLayout(null);
+		// middlePanel.setLayout(new FlowLayout(FlowLayout.CENTER));
 		JLabel memberId = new JLabel("Member ID:");
-		middlePanel.add(memberId, FlowLayout.LEFT);
-
-		memberIdField = new JTextField(15);
-		middlePanel.add(memberIdField, FlowLayout.CENTER);
-
+		// middlePanel.add(memberId, FlowLayout.LEFT);
+		memberId.setBounds(50, 30, 200, 10);
+		memberIdField = new JTextField(10);
+		// middlePanel.add(memberIdField, FlowLayout.CENTER);
+		memberIdField.setBounds(200, 15, 250, 50);
 		searchButton = new JButton("Search");
+		searchButton.setBounds(200, 80, 100, 25);
 		searchButtonListener(searchButton);
-		middlePanel.add(searchButton, FlowLayout.RIGHT);
+		// middlePanel.add(searchButton, FlowLayout.RIGHT);
+		middlePanel.add(memberId);
+		middlePanel.add(memberIdField);
+		middlePanel.add(searchButton);
 	}
 
 	private void defineLowerPanel() {

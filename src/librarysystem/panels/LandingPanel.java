@@ -27,7 +27,8 @@ public class LandingPanel {
 
 	public LandingPanel() {
 		mainPanel = new JPanel();
-		mainPanel.setLayout(new FlowLayout());
+		mainPanel.setLayout(null);
+
 //		setPathToImage();
 //		insertSplashImage();
 		defineTopPanel();
@@ -51,6 +52,7 @@ public class LandingPanel {
 		String bookPath = System.getProperty("user.dir") + "/src/librarysystem/book.png";
 		Icon bookIcon = new ImageIcon(bookPath);
 		JButton loginLabel = new JButton("Available Books : " + sc.allBookIds().size(), bookIcon);
+		loginLabel.setBounds(30, 50, 250, 50);
 		loginLabel.setBackground(Color.LIGHT_GRAY);
 		loginLabel.setOpaque(true);
 		loginLabel.setBorderPainted(false);
@@ -59,6 +61,7 @@ public class LandingPanel {
 		String memberPath = System.getProperty("user.dir") + "/src/librarysystem/member.png";
 		Icon memberIcon = new ImageIcon(memberPath);
 		JButton member = new JButton("Members : " + sc.allMemberIds().size(), memberIcon);
+		member.setBounds(320, 50, 250, 50);
 		member.setBackground(Color.LIGHT_GRAY);
 		member.setOpaque(true);
 		member.setBorderPainted(false);
