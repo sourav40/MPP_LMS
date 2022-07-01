@@ -1,6 +1,7 @@
 package librarysystem.panels;
 
 import java.awt.BorderLayout;
+import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.util.List;
 
@@ -70,8 +71,7 @@ public class AllBookIDs implements MessageableWindow {
 			tableModel.addRow(rec);
 		}
 
-		table.getColumnModel().getColumn(1).setPreferredWidth(200);
-		table.getColumnModel().getColumn(0).setPreferredWidth(100);
+		table.setPreferredSize(new Dimension(500, 300));
 		table.setPreferredScrollableViewportSize(table.getPreferredSize());
 		table.setFillsViewportHeight(true);
 		JScrollPane scrollPane = new JScrollPane(table);

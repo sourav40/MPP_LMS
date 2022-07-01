@@ -1,6 +1,7 @@
 package librarysystem.panels;
 
 import java.awt.BorderLayout;
+import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.util.List;
 
@@ -105,13 +106,12 @@ public class CheckoutRecordPanel implements MessageableWindow {
 							for (String[] rec : records) {
 								tableModel.addRow(rec);
 							}
-							tableModel.addRow(new String[] {});
-							tableModel.addRow(new String[] {});
-							tableModel.addRow(new String[] {});
-							tableModel.addRow(new String[] {});
-							tableModel.addRow(new String[] {});
-							tableModel.addRow(new String[] {});
-
+//							table.getColumnModel().getColumn(0).setPreferredWidth(20);
+//							table.getColumnModel().getColumn(1).setPreferredWidth(80);
+//							table.getColumnModel().getColumn(2).setPreferredWidth(20);
+//							table.getColumnModel().getColumn(3).setPreferredWidth(80);
+//							table.getColumnModel().getColumn(4).setPreferredWidth(80);
+							table.setPreferredSize(new Dimension(500, 200));
 							table.setPreferredScrollableViewportSize(table.getPreferredSize());
 							table.setFillsViewportHeight(true);
 							scrollPane = new JScrollPane(table);
