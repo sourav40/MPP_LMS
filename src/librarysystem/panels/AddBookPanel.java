@@ -71,7 +71,7 @@ public class AddBookPanel {
 		btnPnl.add(addBookButtonPanel);
 		btnPnl.add(addResetBookButtonPanel);
 		mainPanel.add(btnPnl, BorderLayout.SOUTH);
-//		clearData();
+		clearData();
 	}
 
 	public void defineTopPanel() {

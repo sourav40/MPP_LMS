@@ -46,8 +46,7 @@ public class LibrarySystem extends JFrame implements LibWindow {
 //	ListItem[] loginItems = { loginListItem };
 	ListItem[] librarianItems = { splashScreenItem, checkoutBook, viewTitlesItem, checkMemberRecord, };
 	ListItem[] adminItems = { splashScreenItem, addMember, addBookItem, viewTitlesItem, addBookCopyItem, };
-	ListItem[] allItems = { splashScreenItem,
-			addMember, addBookItem, checkoutBook, viewTitlesItem, addBookCopyItem,
+	ListItem[] allItems = { splashScreenItem, addMember, addBookItem, checkoutBook, viewTitlesItem, addBookCopyItem,
 			checkMemberRecord, };
 
 	public ListItem[] getAdminItems() {
