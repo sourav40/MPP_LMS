@@ -31,4 +31,6 @@ public interface ControllerInterface {
 			String state, String zip) throws LibrarySystemException;
 
 	public String[] isBookOverDue(String isbn);
+	
+	public List<String[]> getAllBookDetails();
 }
