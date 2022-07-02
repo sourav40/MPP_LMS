@@ -95,12 +95,13 @@ public class CheckoutRecordPanel implements MessageableWindow {
 					List<String[]> records = sc.getMemberCheckoutEntries(memberID);
 					if (records.size() == 0) {
 						displayInfo("No book entries ");
-						DialogMessage.showDialog(LibrarySystem.INSTANCE, "No book entries ", DialogMessage.INFO);
+						DialogMessage.showDialog(LibrarySystem.INSTANCE, "No book entries ", DialogMessage.ERROR);
 					} else {
 						if (!tableDataSet) {
 							DefaultTableModel tableModel = new DefaultTableModel();
 							tableModel.addColumn("Member Id");
-							tableModel.addColumn("Book");
+							tableModel.addColumn("ISBN");
+							tableModel.addColumn("TITLE");
 							tableModel.addColumn("Copy Number");
 							tableModel.addColumn("Checkout Date");
 							tableModel.addColumn("Due Date");
@@ -110,12 +111,7 @@ public class CheckoutRecordPanel implements MessageableWindow {
 							for (String[] rec : records) {
 								tableModel.addRow(rec);
 							}
-//							table.getColumnModel().getColumn(0).setPreferredWidth(20);
-//							table.getColumnModel().getColumn(1).setPreferredWidth(80);
-//							table.getColumnModel().getColumn(2).setPreferredWidth(20);
-//							table.getColumnModel().getColumn(3).setPreferredWidth(80);
-//							table.getColumnModel().getColumn(4).setPreferredWidth(80);
-							table.setPreferredSize(new Dimension(500, 200));
+							table.setPreferredSize(new Dimension(600, 200));
 							table.setPreferredScrollableViewportSize(table.getPreferredSize());
 							table.setFillsViewportHeight(true);
 							scrollPane = new JScrollPane(table);

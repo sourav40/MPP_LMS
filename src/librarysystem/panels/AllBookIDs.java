@@ -58,12 +58,19 @@ public class AllBookIDs implements MessageableWindow {
 		middlePanel = new JPanel();
 		FlowLayout fl = new FlowLayout(FlowLayout.CENTER, 25, 25);
 		middlePanel.setLayout(fl);
+		updateData();
+		middlePanel.add(table);
+//		lowerPanel.add(scrollPane);
+	}
+
+	public void updateData() {
 
 		List<String[]> records = sc.getAllBookDetails();
 
 		DefaultTableModel tableModel = new DefaultTableModel();
 		tableModel.addColumn("Book ISBN");
 		tableModel.addColumn("Book Title");
+		tableModel.addColumn("Available Copy");
 
 		table = new JTable(tableModel);
 
@@ -71,24 +78,10 @@ public class AllBookIDs implements MessageableWindow {
 			tableModel.addRow(rec);
 		}
 
-		table.setPreferredSize(new Dimension(500, 300));
+		table.setPreferredSize(new Dimension(550, 400));
 		table.setPreferredScrollableViewportSize(table.getPreferredSize());
 		table.setFillsViewportHeight(true);
-		JScrollPane scrollPane = new JScrollPane(table);
-
-		middlePanel.add(table);
-//		middlePanel.add(scrollPane);
-		lowerPanel.add(scrollPane);
-	}
-
-	public void updateData() {
-//		StringBuilder sb = new StringBuilder();
-//		List<String> bookIds = sc.allBookIds();
-//		Collections.sort(bookIds);
-//		for (String s : bookIds) {
-//			sb.append(s).append("\n");
-//		}
-//		textArea.setText(sb.toString());
-//		mainPanel.repaint();
+//		JScrollPane scrollPane = new JScrollPane(table);
+		mainPanel.repaint();
 	}
 }

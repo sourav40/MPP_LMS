@@ -1,3 +1,4 @@
+package access;
 import java.awt.Component;
 import java.awt.EventQueue;
 import java.awt.Toolkit;
@@ -81,7 +82,7 @@ public class Login extends JFrame {
 						frame.dispose();
 						Main.entry();
 					} catch (Exception ex) {
-						ex.printStackTrace();
+//						ex.printStackTrace();
 						DialogMessage.showDialog(new JFrame(), "Invalid credentials.", "Error");
 					}
 				}

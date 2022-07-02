@@ -1,7 +1,5 @@
 package librarysystem;
 
-import librarysystem.panels.*;
-
 import java.awt.BorderLayout;
 import java.awt.CardLayout;
 import java.awt.Color;
@@ -17,6 +15,16 @@ import javax.swing.JTextArea;
 
 import business.SystemController;
 import dataaccess.Auth;
+import librarysystem.panels.AddBookCopyPanel;
+import librarysystem.panels.AddBookPanel;
+import librarysystem.panels.AllBookIDs;
+import librarysystem.panels.CheckoutBookPanel;
+import librarysystem.panels.CheckoutRecordPanel;
+import librarysystem.panels.LandingPanel;
+import librarysystem.panels.LoginPanel;
+import librarysystem.panels.NewMemberPanel;
+import librarysystem.panels.OverDueBooksPanel;
+import librarysystem.panels.Util;
 
 @SuppressWarnings("serial")
 public class LibrarySystem extends JFrame implements LibWindow {
@@ -35,7 +43,7 @@ public class LibrarySystem extends JFrame implements LibWindow {
 //	ListItem loginListItem = new ListItem("Login/Logout", true);
 	ListItem addBookItem = new ListItem("Add Book", false);
 	ListItem addMember = new ListItem("Add Member", false);
-	ListItem viewTitlesItem = new ListItem("All Book IDs", false);
+	ListItem viewTitlesItem = new ListItem("All Book Info", false);
 	ListItem checkoutBook = new ListItem("Checkout Book", false);
 	ListItem checkMemberRecord = new ListItem("View Checkout Record", false);
 
@@ -87,7 +95,7 @@ public class LibrarySystem extends JFrame implements LibWindow {
 				value = splashScreenItem.getItemName();
 				linkList.setSelectedIndex(0);
 			}
-			if (value.equals("All Book IDs"))
+			if (value.equals("All Book Info"))
 				abip.updateData();
 			cl.show(cards, value);
 		});

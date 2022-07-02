@@ -43,7 +43,7 @@ public class SystemController implements ControllerInterface {
 		SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
 		for (CheckoutRecordEntry ch : checkoutBooks) {
 			String[] recs = new String[] { memberId, ch.getBookCopy().getBook().getIsbn(),
-					Integer.toString(ch.getBookCopy().getCopyNum()),
+					ch.getBookCopy().getBook().getTitle(), Integer.toString(ch.getBookCopy().getCopyNum()),
 					simpleDateFormat.format((ch.getCheckoutDate().getTime())),
 					simpleDateFormat.format((ch.getDueDate().getTime())), };
 //            System.out.println(Arrays.toString(recs) + " |||||||||||");
@@ -210,7 +210,7 @@ public class SystemController implements ControllerInterface {
 			bookList.add(getBookById(isbn));
 		});
 		for (Book book : bookList) {
-			String[] list = new String[] { book.getIsbn(), book.getTitle() };
+			String[] list = new String[] { book.getIsbn(), book.getTitle(), Integer.toString(book.getCopies().length) };
 			bookDisplayList.add(list);
 		}
 		return bookDisplayList;
